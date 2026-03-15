@@ -17,7 +17,7 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            overflow-x: hidden; /* Evita barra lateral por causa dos corações */
+            overflow-x: hidden;
         }
 
         /* Animação de Corações Caindo */
@@ -43,6 +43,7 @@
             height: 80px;
             background: rgba(255, 255, 255, 0.8);
             backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
             display: flex;
             justify-content: center;
             align-items: center;
@@ -55,7 +56,7 @@
         header h1 {
             font-family: 'Dancing Script', cursive;
             color: #ff4d6d;
-            font-size: 2rem;
+            font-size: 1.8rem;
             margin: 0;
         }
 
@@ -63,7 +64,7 @@
         .container {
             width: 90%;
             max-width: 600px;
-            margin-top: 100px; /* Espaço para o header */
+            margin-top: 100px; 
             padding-bottom: 50px;
         }
 
@@ -73,10 +74,9 @@
             margin-bottom: 60px;
             opacity: 0;
             transform: translateY(30px);
-            transition: all 0.8s ease-out;
+            transition: all 1s ease-out;
         }
 
-        /* Classe para ativar animação ao rolar */
         .section.visible {
             opacity: 1;
             transform: translateY(0);
@@ -86,16 +86,17 @@
         img {
             width: 100%;
             display: block;
-            border-radius: 20px 20px 0 0; /* Arredondado só em cima */
+            border-radius: 20px 20px 0 0;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
         }
 
-        /* Card Translúcido (Efeito Frosted Glass) */
+        /* Card Translúcido */
         .text-container {
             padding: 35px;
-            background: rgba(255, 255, 255, 0.4); /* Branco bem transparente */
-            backdrop-filter: blur(15px); /* Desfoque no fundo */
+            background: rgba(255, 255, 255, 0.5);
+            backdrop-filter: blur(15px);
             -webkit-backdrop-filter: blur(15px);
-            border-radius: 0 0 20px 20px; /* Arredondado só embaixo */
+            border-radius: 0 0 20px 20px;
             border: 1px solid rgba(255, 255, 255, 0.3);
             line-height: 1.8;
             text-align: center;
@@ -113,7 +114,24 @@
             margin-bottom: 10px;
         }
 
-        /* Scroll suave */
+        /* Botão Flutuante de Música (Opcional, caso ela queira pausar) */
+        #music-control {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 50%;
+            width: 45px;
+            height: 45px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 1001;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            font-size: 20px;
+        }
+
         html {
             scroll-behavior: smooth;
         }
@@ -121,40 +139,79 @@
 </head>
 <body>
 
+    <!-- Elemento de Áudio -->
+    <audio id="musica" loop>
+        <source src="alianca.mp3" type="audio/mpeg">
+        Seu navegador não suporta música.
+    </audio>
+
+    <!-- Controle visual de música -->
+    <div id="music-control">🎵</div>
+
     <header>
         <h1>Para o meu eterno amor...</h1>
     </header>
 
     <div class="container">
 
-        <!-- PRIMEIRA SESSÃO -->
         <div class="section">
-            <img src="img/img1.jpeg" alt="Nossa Foto 1">
+            <img src="img/img1.jpeg" alt="Foto 1">
             <div class="text-container">
                 Você é maravilhosa, você é linda, esplêndida, mas também é muito mais do que os olhos podem ver. Você é inteligente, sensível, cheia de luz e de força silenciosa. Você nunca foi uma escolheira, você sempre foi destino. Você é forte mesmo sem perceber, corajosa mesmo com medo, suficiente mesmo duvidando. Você vai realizar seus sonhos, um por um, e quando menos esperar, estará vivendo aquilo que só parecia possível nos seus devaneios. Você é extraordinária, incrível, inteira. Você vai dar gritos de alegria, vai chorar de emoção, vai sentir o coração apertado de tanto amor. Vai viver coisas lindas, valiosas, inesquecíveis, porque você merece tudo isso e muito mais. E o mais bonito: você já é tudo isso, mesmo sem precisar provar nada a ninguém.
             </div>
         </div>
 
-        <!-- SEGUNDA SESSÃO -->
         <div class="section">
-            <img src="img/img2.jpeg" alt="Nossa Foto 2">
+            <img src="img/img2.jpeg" alt="Foto 2">
             <div class="text-container">
                 Nos dias nublados da alma, quando tudo parece pesar mais, você é o abraço que me acolhe, o silêncio que me entende e o porto onde meu coração encontra paz. Nos momentos ruins, você não é só meu refúgio, você é o lembrete de que ainda existe delicadeza no mundo, e que, mesmo no caos, eu posso descansar em você.
             </div>
         </div>
 
-        <!-- TERCEIRA SESSÃO -->
         <div class="section">
-            <img src="img/img3.jpeg" alt="Nossa Foto 3">
+            <img src="img/img3.jpeg" alt="Foto 3">
             <div class="text-container">
-                Do mesmo jeito que o sol se apaixonou pela lua, eu me apaixonou por você. Por cada detalhe seu, cada gesto, cada parte. Seus olhos, sua boca, seu sorriso, você. Eu te amo de corpo e alma, meu coração é teu, somente teu. Só em te ver eu já me sinto em paz, só em te dar um abraço, eu já me sinto em casa. Te beijar e saber que você é a pessoa certa, a pessoa que eu escolhi e escolho todos dos dias, para ser o amor da minha vida foi a melhor coisa que já aconteceu. Eu te amo muitooo, meu benzinho
+                Do mesmo jeito que o sol se apaixonou pela lua, eu me apaixonei por você. Por cada detalhe seu, cada gesto, cada parte. Seus olhos, sua boca, seu sorriso, você. Eu te amo de corpo e alma, meu coração é teu, somente teu. Só em te ver eu já me sinto em paz, só em te dar um abraço, eu já me sinto em casa. Te beijar e saber que você é a pessoa certa, a pessoa que eu escolhi e escolho todos dos dias, para ser o amor da minha vida foi a melhor coisa que já aconteceu. Eu te amo muitooo, meu benzinho
             </div>
         </div>
 
     </div>
 
     <script>
-        // Função para criar corações caindo
+        const audio = document.getElementById('musica');
+        const musicBtn = document.getElementById('music-control');
+
+        // Tenta tocar a música assim que carregar
+        window.addEventListener('load', () => {
+            const playPromise = audio.play();
+
+            if (playPromise !== undefined) {
+                playPromise.catch(() => {
+                    // Se o navegador bloquear, toca no primeiro clique ou toque na tela
+                    document.addEventListener('click', startMusic, { once: true });
+                    document.addEventListener('touchstart', startMusic, { once: true });
+                    document.addEventListener('scroll', startMusic, { once: true });
+                });
+            }
+        });
+
+        function startMusic() {
+            audio.play();
+            musicBtn.innerHTML = '⏸️';
+        }
+
+        // Controle manual (Play/Pause) no ícone
+        musicBtn.addEventListener('click', () => {
+            if (audio.paused) {
+                audio.play();
+                musicBtn.innerHTML = '⏸️';
+            } else {
+                audio.pause();
+                musicBtn.innerHTML = '🎵';
+            }
+        });
+
+        // Corações Caindo
         function createHeart() {
             const heart = document.createElement('div');
             heart.classList.add('heart');
@@ -163,15 +220,11 @@
             heart.style.animationDuration = Math.random() * 3 + 2 + 's';
             heart.style.opacity = Math.random();
             document.body.appendChild(heart);
-
-            setTimeout(() => {
-                heart.remove();
-            }, 5000);
+            setTimeout(() => heart.remove(), 5000);
         }
-
         setInterval(createHeart, 300);
 
-        // Animação de revelação ao rolar (Intersection Observer)
+        // Revelação ao rolar
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
