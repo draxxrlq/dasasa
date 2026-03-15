@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para o Meu Amor</title>
+    <!-- Importando fontes românticas -->
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400&display=swap" rel="stylesheet">
+    <style>
+        /* Configurações Gerais e Fundo */
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #f2f2f2;
+            font-family: 'Poppins', sans-serif;
+            color: #444;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            overflow-x: hidden; /* Evita barra lateral por causa dos corações */
+        }
+
+        /* Animação de Corações Caindo */
+        .heart {
+            position: fixed;
+            top: -10vh;
+            font-size: 20px;
+            color: #ff4d6d;
+            user-select: none;
+            z-index: -1;
+            animation: fall linear forwards;
+        }
+
+        @keyframes fall {
+            to {
+                transform: translateY(110vh) translateX(20px) rotate(360deg);
+            }
+        }
+
+        /* Cabeçalho Fixo */
+        header {
+            width: 100%;
+            height: 80px;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: fixed;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+        }
+
+        header h1 {
+            font-family: 'Dancing Script', cursive;
+            color: #ff4d6d;
+            font-size: 2rem;
+            margin: 0;
+        }
+
+        /* Container Principal */
+        .container {
+            width: 90%;
+            max-width: 600px;
+            margin-top: 100px; /* Espaço para o header */
+            padding-bottom: 50px;
+        }
+
+        /* Cada Seção */
+        .section {
+            width: 100%;
+            margin-bottom: 60px;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+
+        /* Classe para ativar animação ao rolar */
+        .section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Estilo das Imagens */
+        img {
+            width: 100%;
+            display: block;
+            border-radius: 20px 20px 0 0; /* Arredondado só em cima */
+        }
+
+        /* Card Translúcido (Efeito Frosted Glass) */
+        .text-container {
+            padding: 35px;
+            background: rgba(255, 255, 255, 0.4); /* Branco bem transparente */
+            backdrop-filter: blur(15px); /* Desfoque no fundo */
+            -webkit-backdrop-filter: blur(15px);
+            border-radius: 0 0 20px 20px; /* Arredondado só embaixo */
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            line-height: 1.8;
+            text-align: center;
+            font-size: 1.05rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            color: #555;
+            position: relative;
+        }
+
+        .text-container::before {
+            content: '♥';
+            display: block;
+            color: #ff4d6d;
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+
+        /* Scroll suave */
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Para o meu eterno amor...</h1>
+    </header>
+
+    <div class="container">
+
+        <!-- PRIMEIRA SESSÃO -->
+        <div class="section">
+            <img src="img/img1.jpeg" alt="Nossa Foto 1">
+            <div class="text-container">
+                Você é maravilhosa, você é linda, esplêndida, mas também é muito mais do que os olhos podem ver. Você é inteligente, sensível, cheia de luz e de força silenciosa. Você nunca foi uma escolheira, você sempre foi destino. Você é forte mesmo sem perceber, corajosa mesmo com medo, suficiente mesmo duvidando. Você vai realizar seus sonhos, um por um, e quando menos esperar, estará vivendo aquilo que só parecia possível nos seus devaneios. Você é extraordinária, incrível, inteira. Você vai dar gritos de alegria, vai chorar de emoção, vai sentir o coração apertado de tanto amor. Vai viver coisas lindas, valiosas, inesquecíveis, porque você merece tudo isso e muito mais. E o mais bonito: você já é tudo isso, mesmo sem precisar provar nada a ninguém.
+            </div>
+        </div>
+
+        <!-- SEGUNDA SESSÃO -->
+        <div class="section">
+            <img src="img/img2.jpeg" alt="Nossa Foto 2">
+            <div class="text-container">
+                Nos dias nublados da alma, quando tudo parece pesar mais, você é o abraço que me acolhe, o silêncio que me entende e o porto onde meu coração encontra paz. Nos momentos ruins, você não é só meu refúgio, você é o lembrete de que ainda existe delicadeza no mundo, e que, mesmo no caos, eu posso descansar em você.
+            </div>
+        </div>
+
+        <!-- TERCEIRA SESSÃO -->
+        <div class="section">
+            <img src="img/img3.jpeg" alt="Nossa Foto 3">
+            <div class="text-container">
+                Do mesmo jeito que o sol se apaixonou pela lua, eu me apaixonou por você. Por cada detalhe seu, cada gesto, cada parte. Seus olhos, sua boca, seu sorriso, você. Eu te amo de corpo e alma, meu coração é teu, somente teu. Só em te ver eu já me sinto em paz, só em te dar um abraço, eu já me sinto em casa. Te beijar e saber que você é a pessoa certa, a pessoa que eu escolhi e escolho todos dos dias, para ser o amor da minha vida foi a melhor coisa que já aconteceu. Eu te amo muitooo, meu benzinho
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        // Função para criar corações caindo
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            heart.innerHTML = '❤';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = Math.random() * 3 + 2 + 's';
+            heart.style.opacity = Math.random();
+            document.body.appendChild(heart);
+
+            setTimeout(() => {
+                heart.remove();
+            }, 5000);
+        }
+
+        setInterval(createHeart, 300);
+
+        // Animação de revelação ao rolar (Intersection Observer)
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.section').forEach(section => {
+            observer.observe(section);
+        });
+    </script>
+
+</body>
+</html>
