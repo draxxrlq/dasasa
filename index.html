@@ -57,7 +57,7 @@
             margin: 0;
         }
 
-        /* Botão Player Customizado - Inicialmente escondido */
+        /* Botão Player Customizado - Visível por padrão para pausar */
         #music-control {
             position: fixed;
             bottom: 30px;
@@ -75,13 +75,7 @@
             transition: all 0.5s ease;
             border: none;
             outline: none;
-            opacity: 0; /* Invisível no início */
-            pointer-events: none; /* Não clicável enquanto invisível */
-        }
-
-        #music-control.show {
             opacity: 1;
-            pointer-events: auto;
         }
 
         #music-control:hover {
@@ -159,11 +153,12 @@
 </head>
 <body>
 
-    <audio id="musica" loop>
+    <!-- Audio configurado com Autoplay -->
+    <audio id="musica" loop autoplay>
         <source src="aud/alianca.mp3" type="audio/mpeg">
     </audio>
 
-    <button id="music-control">
+    <button id="music-control" class="playing-animation">
         <span id="icon-container">
             <svg viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
         </span>
@@ -204,30 +199,20 @@
         const playSVG = '<svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>';
         const pauseSVG = '<svg viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>';
 
-        // Função para iniciar música e mostrar o botão
-        function startMusic() {
-            audio.play().then(() => {
-                musicBtn.classList.add('show');
-                musicBtn.classList.add('playing-animation');
-                iconContainer.innerHTML = pauseSVG;
-                // Remove os ouvintes para não rodar de novo
-                document.removeEventListener('click', startMusic);
-                document.removeEventListener('scroll', startMusic);
-                document.removeEventListener('touchstart', startMusic);
-            }).catch(error => console.log("Aguardando interação..."));
+        // Tenta tocar imediatamente sem interação
+        function forcePlay() {
+            audio.play().catch(error => {
+                console.log("O navegador bloqueou o autoplay. Tentando novamente...");
+                // Caso falhe, ele tentará tocar no milissegundo em que houver qualquer micro-movimento
+                window.addEventListener('mousemove', () => audio.play(), { once: true });
+            });
         }
 
-        // Tenta tocar imediatamente (pode falhar em alguns navegadores)
-        window.addEventListener('load', startMusic);
+        window.addEventListener('DOMContentLoaded', forcePlay);
+        window.addEventListener('load', forcePlay);
 
-        // Garante que toque ao interagir com o site
-        document.addEventListener('click', startMusic);
-        document.addEventListener('scroll', startMusic);
-        document.addEventListener('touchstart', startMusic);
-
-        // Controle manual do botão após ele aparecer
-        musicBtn.addEventListener('click', (e) => {
-            e.stopPropagation(); // Evita conflito com o startMusic
+        // Controle manual do botão
+        musicBtn.addEventListener('click', () => {
             if (audio.paused) {
                 audio.play();
                 iconContainer.innerHTML = pauseSVG;
